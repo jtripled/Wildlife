@@ -1,6 +1,7 @@
-package com.jtripled.wildlife.mob;
+package com.jtripled.wildlife.mob.entry;
 
-import com.jtripled.wildlife.mob.render.RenderPenguin;
+import com.jtripled.wildlife.mob.MobBird;
+import com.jtripled.wildlife.mob.render.RenderBird;
 import java.util.Set;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
@@ -12,54 +13,65 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
  *
  * @author jtripled
  */
-public class MobEntryPenguin extends MobEntry
+public class MobEntryBird extends MobEntry
 {
-    public MobEntryPenguin()
+    public MobEntryBird()
     {
-        super(MobPenguin.class, MobPenguin.NAME);
+        super(MobBird.class, MobBird.NAME);
     }
 
     @Override
     public Class<? extends EntityLiving> getEntityClass()
     {
-        return MobPenguin.class;
+        return MobBird.class;
     }
 
     @Override
     public IRenderFactory getRenderFactory()
     {
-        return RenderPenguin::new;
+        return RenderBird::new;
     }
 
     @Override
     public ResourceLocation getResourceLocation()
     {
-        return MobPenguin.RESOURCE;
+        return MobBird.RESOURCE;
     }
     
     @Override
     public int getEggPrimary()
     {
-        return MobPenguin.EGG_PRIMARY;
+        return MobBird.EGG_PRIMARY;
     }
     
     @Override
     public int getEggSecondary()
     {
-        return MobPenguin.EGG_SECONDARY;
+        return MobBird.EGG_SECONDARY;
     }
     
     @Override
     public boolean canSpawn(Biome biome)
     {
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
-        return (types.contains(BiomeDictionary.Type.FOREST)
-                || types.contains(BiomeDictionary.Type.CONIFEROUS));
+        return types.contains(BiomeDictionary.Type.FOREST);
     }
         
     @Override
     public int getSpawnRate()
     {
-        return 5;
+        return 10;
+    }
+
+    @Override
+    public int getSpawnMin()
+    {
+        return 2;
+    }
+
+    @Override
+    public int getSpawnMax()
+    {
+        return 4;
     }
 }

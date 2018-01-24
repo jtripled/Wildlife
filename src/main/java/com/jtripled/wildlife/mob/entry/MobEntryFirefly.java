@@ -1,6 +1,7 @@
-package com.jtripled.wildlife.mob;
+package com.jtripled.wildlife.mob.entry;
 
-import com.jtripled.wildlife.mob.render.RenderSquirrel;
+import com.jtripled.wildlife.mob.MobFirefly;
+import com.jtripled.wildlife.mob.render.RenderFirefly;
 import java.util.Set;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
@@ -12,54 +13,65 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
  *
  * @author jtripled
  */
-public class MobEntrySquirrel extends MobEntry
+public class MobEntryFirefly extends MobEntry
 {
-    public MobEntrySquirrel()
+    public MobEntryFirefly()
     {
-        super(MobSquirrel.class, MobSquirrel.NAME);
+        super(MobFirefly.class, MobFirefly.NAME);
     }
 
     @Override
     public Class<? extends EntityLiving> getEntityClass()
     {
-        return MobSquirrel.class;
+        return MobFirefly.class;
     }
 
     @Override
     public IRenderFactory getRenderFactory()
     {
-        return RenderSquirrel::new;
+        return RenderFirefly::new;
     }
 
     @Override
     public ResourceLocation getResourceLocation()
     {
-        return MobSquirrel.RESOURCE;
+        return MobFirefly.RESOURCE;
     }
     
     @Override
     public int getEggPrimary()
     {
-        return MobSquirrel.EGG_PRIMARY;
+        return MobFirefly.EGG_PRIMARY;
     }
     
     @Override
     public int getEggSecondary()
     {
-        return MobSquirrel.EGG_SECONDARY;
+        return MobFirefly.EGG_SECONDARY;
     }
     
     @Override
     public boolean canSpawn(Biome biome)
     {
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
-        return (types.contains(BiomeDictionary.Type.FOREST)
-                || types.contains(BiomeDictionary.Type.CONIFEROUS));
+        return types.contains(BiomeDictionary.Type.FOREST);
     }
         
     @Override
     public int getSpawnRate()
     {
-        return 5;
+        return 10;
+    }
+
+    @Override
+    public int getSpawnMin()
+    {
+        return 1;
+    }
+
+    @Override
+    public int getSpawnMax()
+    {
+        return 3;
     }
 }

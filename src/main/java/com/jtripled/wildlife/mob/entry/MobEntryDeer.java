@@ -1,5 +1,6 @@
-package com.jtripled.wildlife.mob;
+package com.jtripled.wildlife.mob.entry;
 
+import com.jtripled.wildlife.mob.MobDeer;
 import com.jtripled.wildlife.mob.render.RenderDeer;
 import java.util.Set;
 import net.minecraft.entity.EntityLiving;
@@ -40,13 +41,13 @@ public class MobEntryDeer extends MobEntry
     @Override
     public int getEggPrimary()
     {
-        return 0x92923B;
+        return MobDeer.EGG_PRIMARY;
     }
     
     @Override
     public int getEggSecondary()
     {
-        return 0xFFFFE2;
+        return MobDeer.EGG_SECONDARY;
     }
     
     @Override
@@ -54,12 +55,14 @@ public class MobEntryDeer extends MobEntry
     {
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
         return (types.contains(BiomeDictionary.Type.FOREST)
-                || types.contains(BiomeDictionary.Type.CONIFEROUS));
+                || types.contains(BiomeDictionary.Type.CONIFEROUS))
+                || biome.getBiomeName().equals("Birch Forest")
+                || biome.getBiomeName().equals("Birch Forest Hills");
     }
         
     @Override
     public int getSpawnRate()
     {
-        return 5;
+        return 8;
     }
 }

@@ -1,0 +1,78 @@
+{
+    "penguin.ambient": {
+        "category": "neutral",
+        "sounds": [
+            "wildlife:penguin_ambient"
+        ],
+        "subtitle": "wildlife:subtitles.penguin.ambient"
+    },
+    "penguin.death": {
+        "category": "neutral",
+        "sounds": [
+            "wildlife:penguin_ambient"
+        ],
+        "subtitle": "wildlife:subtitles.penguin.death"
+    },
+    "penguin.hurt": {
+        "category": "neutral",
+        "sounds": [
+            "wildlife:penguin_ambient"
+        ],
+        "subtitle": "wildlife:subtitles.penguin.hurt"
+    },
+    "squirrel.ambient": {
+        "category": "neutral",
+        "sounds": [
+            "wildlife:squirrel_ambient0",
+            "wildlife:squirrel_ambient1"
+        ],
+        "subtitle": "wildlife:subtitles.squirrel.ambient"
+    },
+    "squirrel.death": {
+        "category": "neutral",
+        "sounds": [
+            "wildlife:squirrel_death"
+        ],
+        "subtitle": "wildlife:subtitles.squirrel.death"
+    },
+    "squirrel.hurt": {
+        "category": "neutral",
+        "sounds": [
+            "wildlife:squirrel_hurt"
+        ],
+        "subtitle": "wildlife:subtitles.squirrel.hurt"
+    },
+    "bird.ambient": {
+        "category": "neutral",
+        "sounds": [
+            "wildlife:bird_ambient0",
+            "wildlife:bird_ambient1",
+            "wildlife:bird_ambient2"
+        ],
+        "subtitle": "wildlife:subtitles.bird.ambient"
+    },
+    "bird.death": {
+        "category": "neutral",
+        "sounds": [
+            "wildlife:bird_hurt0",
+            "wildlife:bird_hurt1"
+        ],
+        "subtitle": "wildlife:subtitles.bird.death"
+    },
+    "bird.hurt": {
+        "category": "neutral",
+        "sounds": [
+            "wildlife:bird_hurt0",
+            "wildlife:bird_hurt1"
+        ],
+        "subtitle": "wildlife:subtitles.bird.hurt"
+    },
+    "bird.sing": {
+        "category": "neutral",
+        "sounds": [
+            "wildlife:bird_sing0",
+            "wildlife:bird_sing1"
+        ],
+        "subtitle": "wildlife:subtitles.bird.sing"
+    }
+}

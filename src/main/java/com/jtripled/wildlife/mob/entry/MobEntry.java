@@ -1,4 +1,4 @@
-package com.jtripled.wildlife.mob;
+package com.jtripled.wildlife.mob.entry;
 
 import com.google.common.collect.Lists;
 import com.jtripled.wildlife.Wildlife;
@@ -75,6 +75,13 @@ public abstract class MobEntry extends EntityEntry
         for (Biome biome : Biome.REGISTRY)
             if (canSpawn(biome))
                 biomes.add(biome);
+        if (Wildlife.DEBUG)
+        {
+            if (biomes.isEmpty())
+                System.out.println("Could not find any valid spawns for '" + getName() + "'.");
+            else
+                System.out.println("Registering spawns for '" + getName() + "': " + biomes.toString());
+        }
         if (!biomes.isEmpty())
             EntityRegistry.addSpawn(getEntityClass(), getSpawnRate(), getSpawnMin(), getSpawnMax(), getSpawnType(), biomes.toArray(new Biome[biomes.size()]));
     }

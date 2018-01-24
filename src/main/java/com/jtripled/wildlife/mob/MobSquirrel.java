@@ -1,6 +1,9 @@
 package com.jtripled.wildlife.mob;
 
 import com.jtripled.wildlife.Wildlife;
+import static com.jtripled.wildlife.mob.MobPenguin.AMBIENT_SOUND;
+import static com.jtripled.wildlife.mob.MobPenguin.DEATH_SOUND;
+import static com.jtripled.wildlife.mob.MobPenguin.HURT_SOUND;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
@@ -13,7 +16,9 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 /**
@@ -26,6 +31,10 @@ public class MobSquirrel extends EntityAnimal
     public static final ResourceLocation RESOURCE = new ResourceLocation(Wildlife.ID, NAME);
     public static final int EGG_PRIMARY = 0x525236;
     public static final int EGG_SECONDARY = 0xAEAEA3;
+    
+    public static final SoundEvent AMBIENT_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "squirrel.ambient")).setRegistryName(new ResourceLocation(Wildlife.ID, "squirrel.ambient"));
+    public static final SoundEvent DEATH_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "squirrel.death")).setRegistryName(new ResourceLocation(Wildlife.ID, "squirrel.death"));
+    public static final SoundEvent HURT_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "squirrel.hurt")).setRegistryName(new ResourceLocation(Wildlife.ID, "squirrel.hurt"));
     
     public MobSquirrel(World world)
     {
@@ -45,13 +54,37 @@ public class MobSquirrel extends EntityAnimal
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
     }
+    
+    @Override
+    public float getSoundVolume()
+    {
+        return 0.5f;
+    }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1.0d);
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(2.0d);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25d);
+    }
+    
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return AMBIENT_SOUND;
+    }
+    
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return DEATH_SOUND;
+    }
+    
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source)
+    {
+        return HURT_SOUND;
     }
 
     @Override

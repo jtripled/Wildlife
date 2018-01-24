@@ -4,11 +4,14 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  *
  * @author jtripled
  */
+@SideOnly(Side.CLIENT)
 public class ModelSquirrel extends ModelBase
 {
     private final ModelRenderer body;

@@ -22,7 +22,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 /**
@@ -35,6 +37,10 @@ public class MobPenguin extends EntityAnimal
     public static final ResourceLocation RESOURCE = new ResourceLocation(Wildlife.ID, NAME);
     public static final int EGG_PRIMARY = 0x000000;
     public static final int EGG_SECONDARY = 0xFFFFFF;
+    
+    public static final SoundEvent AMBIENT_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "penguin.ambient")).setRegistryName(new ResourceLocation(Wildlife.ID, "penguin.ambient"));
+    public static final SoundEvent DEATH_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "penguin.death")).setRegistryName(new ResourceLocation(Wildlife.ID, "penguin.death"));
+    public static final SoundEvent HURT_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "penguin.hurt")).setRegistryName(new ResourceLocation(Wildlife.ID, "penguin.hurt"));
     
     private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(new ItemStack(Items.FISH, 1, ItemFishFood.FishType.COD.getMetadata()).getItem(), new ItemStack(Items.FISH, 1, ItemFishFood.FishType.SALMON.getMetadata()).getItem());
     public short rotationFlipper;
@@ -67,6 +73,30 @@ public class MobPenguin extends EntityAnimal
         super.applyEntityAttributes();
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.16D);
+    }
+    
+    @Override
+    public float getSoundVolume()
+    {
+        return 0.5f;
+    }
+    
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return AMBIENT_SOUND;
+    }
+    
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return DEATH_SOUND;
+    }
+    
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source)
+    {
+        return HURT_SOUND;
     }
 
     @Override

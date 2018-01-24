@@ -2,11 +2,14 @@ package com.jtripled.wildlife.mob.model;
 
 import net.minecraft.client.model.ModelQuadruped;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  *
  * @author jtripled
  */
+@SideOnly(Side.CLIENT)
 public class ModelDeer extends ModelQuadruped
 {
     public final ModelRenderer neck;
