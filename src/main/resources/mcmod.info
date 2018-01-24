@@ -1,0 +1,16 @@
+[
+{
+  "modid": "wildlife",
+  "name": "Wildlife",
+  "description": "Adds some flora and fauna to Minecraft.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["jtripled"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
