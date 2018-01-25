@@ -1,7 +1,8 @@
-package com.jtripled.wildlife.mob.entry;
+package com.jtripled.wildlife.mob.registration;
 
-import com.jtripled.wildlife.mob.MobDeer;
-import com.jtripled.wildlife.mob.render.RenderDeer;
+import com.jtripled.voxen.entity.IMobRegistration;
+import com.jtripled.wildlife.mob.MobButterfly;
+import com.jtripled.wildlife.mob.render.RenderButterfly;
 import java.util.Set;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
@@ -13,49 +14,52 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
  *
  * @author jtripled
  */
-public class MobEntryDeer extends MobEntry
+public class MobRegistrationButterfly implements IMobRegistration
 {
-    public MobEntryDeer()
+    @Override
+    public String getName()
     {
-        super(MobDeer.class, MobDeer.NAME);
+        return MobButterfly.NAME;
     }
 
     @Override
     public Class<? extends EntityLiving> getEntityClass()
     {
-        return MobDeer.class;
+        return MobButterfly.class;
     }
 
     @Override
     public IRenderFactory getRenderFactory()
     {
-        return RenderDeer::new;
+        return RenderButterfly::new;
     }
 
     @Override
     public ResourceLocation getResourceLocation()
     {
-        return MobDeer.RESOURCE;
+        return MobButterfly.RESOURCE;
     }
     
     @Override
     public int getEggPrimary()
     {
-        return MobDeer.EGG_PRIMARY;
+        return MobButterfly.EGG_PRIMARY;
     }
     
     @Override
     public int getEggSecondary()
     {
-        return MobDeer.EGG_SECONDARY;
+        return MobButterfly.EGG_SECONDARY;
     }
     
     @Override
     public boolean canSpawn(Biome biome)
     {
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
-        return (types.contains(BiomeDictionary.Type.FOREST)
-                || types.contains(BiomeDictionary.Type.CONIFEROUS))
+        return (((types.contains(BiomeDictionary.Type.FOREST)
+                || types.contains(BiomeDictionary.Type.PLAINS)))
+                && !types.contains(BiomeDictionary.Type.COLD)
+                && !types.contains(BiomeDictionary.Type.SNOWY))
                 || biome.getBiomeName().equals("Birch Forest")
                 || biome.getBiomeName().equals("Birch Forest Hills");
     }
@@ -63,6 +67,18 @@ public class MobEntryDeer extends MobEntry
     @Override
     public int getSpawnRate()
     {
-        return 8;
+        return MobButterfly.SPAWN_RATE;
+    }
+
+    @Override
+    public int getSpawnMin()
+    {
+        return MobButterfly.SPAWN_MAX;
+    }
+
+    @Override
+    public int getSpawnMax()
+    {
+        return MobButterfly.SPAWN_MIN;
     }
 }

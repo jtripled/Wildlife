@@ -1,5 +1,6 @@
-package com.jtripled.wildlife.mob.entry;
+package com.jtripled.wildlife.mob.registration;
 
+import com.jtripled.voxen.entity.IMobRegistration;
 import com.jtripled.wildlife.mob.MobFirefly;
 import com.jtripled.wildlife.mob.render.RenderFirefly;
 import java.util.Set;
@@ -13,11 +14,12 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
  *
  * @author jtripled
  */
-public class MobEntryFirefly extends MobEntry
+public class MobRegistrationFirefly implements IMobRegistration
 {
-    public MobEntryFirefly()
+    @Override
+    public String getName()
     {
-        super(MobFirefly.class, MobFirefly.NAME);
+        return MobFirefly.NAME;
     }
 
     @Override
@@ -60,18 +62,18 @@ public class MobEntryFirefly extends MobEntry
     @Override
     public int getSpawnRate()
     {
-        return 10;
+        return MobFirefly.SPAWN_RATE;
     }
 
     @Override
     public int getSpawnMin()
     {
-        return 1;
+        return MobFirefly.SPAWN_MIN;
     }
 
     @Override
     public int getSpawnMax()
     {
-        return 3;
+        return MobFirefly.SPAWN_MAX;
     }
 }

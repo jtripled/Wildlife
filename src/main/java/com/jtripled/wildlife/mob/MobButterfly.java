@@ -37,6 +37,9 @@ public class MobButterfly extends EntityFlying implements IMob
     public static final ResourceLocation RESOURCE = new ResourceLocation(Wildlife.ID, NAME);
     public static final int EGG_PRIMARY = 0x92923B;
     public static final int EGG_SECONDARY = 0xFFFFE2;
+    public static final int SPAWN_RATE = 10;
+    public static final int SPAWN_MIN = 1;
+    public static final int SPAWN_MAX = 5;
     
     private static final DataParameter<Byte> TYPE = EntityDataManager.<Byte>createKey(MobButterfly.class, DataSerializers.BYTE);
 

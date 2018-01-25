@@ -1,12 +1,11 @@
-package com.jtripled.wildlife.mob.entry;
+package com.jtripled.wildlife.mob.registration;
 
-import com.jtripled.wildlife.Wildlife;
-import com.jtripled.wildlife.mob.MobPenguin;
-import com.jtripled.wildlife.mob.render.RenderPenguin;
+import com.jtripled.voxen.entity.IMobRegistration;
+import com.jtripled.wildlife.mob.MobDeer;
+import com.jtripled.wildlife.mob.render.RenderDeer;
 import java.util.Set;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
@@ -15,66 +14,69 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
  *
  * @author jtripled
  */
-public class MobEntryPenguin extends MobEntry
+public class MobRegistrationDeer implements IMobRegistration
 {
-    public MobEntryPenguin()
+    @Override
+    public String getName()
     {
-        super(MobPenguin.class, MobPenguin.NAME);
+        return MobDeer.NAME;
     }
 
     @Override
     public Class<? extends EntityLiving> getEntityClass()
     {
-        return MobPenguin.class;
+        return MobDeer.class;
     }
 
     @Override
     public IRenderFactory getRenderFactory()
     {
-        return RenderPenguin::new;
+        return RenderDeer::new;
     }
 
     @Override
     public ResourceLocation getResourceLocation()
     {
-        return MobPenguin.RESOURCE;
+        return MobDeer.RESOURCE;
     }
     
     @Override
     public int getEggPrimary()
     {
-        return MobPenguin.EGG_PRIMARY;
+        return MobDeer.EGG_PRIMARY;
     }
     
     @Override
     public int getEggSecondary()
     {
-        return MobPenguin.EGG_SECONDARY;
+        return MobDeer.EGG_SECONDARY;
     }
     
     @Override
     public boolean canSpawn(Biome biome)
     {
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
-        return (types.contains(BiomeDictionary.Type.SNOWY)
-                && !types.contains(BiomeDictionary.Type.FOREST));
+        return (types.contains(BiomeDictionary.Type.FOREST)
+                || types.contains(BiomeDictionary.Type.CONIFEROUS))
+                || biome.getBiomeName().equals("Birch Forest")
+                || biome.getBiomeName().equals("Birch Forest Hills");
     }
-        
+    
     @Override
     public int getSpawnRate()
     {
-        return 8;
+        return MobDeer.SPAWN_RATE;
     }
-
+    
     @Override
     public int getSpawnMin()
     {
-        return 3;
+        return MobDeer.SPAWN_MIN;
     }
-
+    
     @Override
     public int getSpawnMax()
     {
-        return 5;
+        return MobDeer.SPAWN_MAX;
     }
 }

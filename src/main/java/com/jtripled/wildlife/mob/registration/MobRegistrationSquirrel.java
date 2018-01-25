@@ -1,10 +1,12 @@
-package com.jtripled.wildlife.mob.entry;
+package com.jtripled.wildlife.mob.registration;
 
-import com.jtripled.wildlife.mob.MobButterfly;
-import com.jtripled.wildlife.mob.render.RenderButterfly;
+import com.jtripled.voxen.entity.IMobRegistration;
+import com.jtripled.wildlife.mob.MobSquirrel;
+import com.jtripled.wildlife.mob.render.RenderSquirrel;
 import java.util.Set;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
@@ -13,51 +15,50 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
  *
  * @author jtripled
  */
-public class MobEntryButterfly extends MobEntry
+public class MobRegistrationSquirrel implements IMobRegistration
 {
-    public MobEntryButterfly()
+    @Override
+    public String getName()
     {
-        super(MobButterfly.class, MobButterfly.NAME);
+        return MobSquirrel.NAME;
     }
 
     @Override
     public Class<? extends EntityLiving> getEntityClass()
     {
-        return MobButterfly.class;
+        return MobSquirrel.class;
     }
 
     @Override
     public IRenderFactory getRenderFactory()
     {
-        return RenderButterfly::new;
+        return RenderSquirrel::new;
     }
 
     @Override
     public ResourceLocation getResourceLocation()
     {
-        return MobButterfly.RESOURCE;
+        return MobSquirrel.RESOURCE;
     }
     
     @Override
     public int getEggPrimary()
     {
-        return MobButterfly.EGG_PRIMARY;
+        return MobSquirrel.EGG_PRIMARY;
     }
     
     @Override
     public int getEggSecondary()
     {
-        return MobButterfly.EGG_SECONDARY;
+        return MobSquirrel.EGG_SECONDARY;
     }
     
     @Override
     public boolean canSpawn(Biome biome)
     {
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
-        return (((types.contains(BiomeDictionary.Type.FOREST)
-                || types.contains(BiomeDictionary.Type.PLAINS)))
-                && !types.contains(BiomeDictionary.Type.COLD)
-                && !types.contains(BiomeDictionary.Type.SNOWY))
+        return (types.contains(BiomeDictionary.Type.FOREST)
+                || types.contains(BiomeDictionary.Type.CONIFEROUS))
                 || biome.getBiomeName().equals("Birch Forest")
                 || biome.getBiomeName().equals("Birch Forest Hills");
     }
@@ -65,18 +66,28 @@ public class MobEntryButterfly extends MobEntry
     @Override
     public int getSpawnRate()
     {
-        return 10;
+        return MobSquirrel.SPAWN_RATE;
     }
 
     @Override
     public int getSpawnMin()
     {
-        return 1;
+        return MobSquirrel.SPAWN_MIN;
     }
 
     @Override
     public int getSpawnMax()
     {
-        return 5;
+        return MobSquirrel.SPAWN_MAX;
+    }
+    
+    @Override
+    public SoundEvent[] getSounds()
+    {
+        return new SoundEvent[]{
+            MobSquirrel.AMBIENT_SOUND,
+            MobSquirrel.DEATH_SOUND,
+            MobSquirrel.HURT_SOUND
+        };
     }
 }

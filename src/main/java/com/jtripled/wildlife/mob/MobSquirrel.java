@@ -1,9 +1,6 @@
 package com.jtripled.wildlife.mob;
 
 import com.jtripled.wildlife.Wildlife;
-import static com.jtripled.wildlife.mob.MobPenguin.AMBIENT_SOUND;
-import static com.jtripled.wildlife.mob.MobPenguin.DEATH_SOUND;
-import static com.jtripled.wildlife.mob.MobPenguin.HURT_SOUND;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
@@ -31,6 +28,9 @@ public class MobSquirrel extends EntityAnimal
     public static final ResourceLocation RESOURCE = new ResourceLocation(Wildlife.ID, NAME);
     public static final int EGG_PRIMARY = 0x525236;
     public static final int EGG_SECONDARY = 0xAEAEA3;
+    public static final int SPAWN_RATE = 10;
+    public static final int SPAWN_MIN = 2;
+    public static final int SPAWN_MAX = 3;
     
     public static final SoundEvent AMBIENT_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "squirrel.ambient")).setRegistryName(new ResourceLocation(Wildlife.ID, "squirrel.ambient"));
     public static final SoundEvent DEATH_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "squirrel.death")).setRegistryName(new ResourceLocation(Wildlife.ID, "squirrel.death"));

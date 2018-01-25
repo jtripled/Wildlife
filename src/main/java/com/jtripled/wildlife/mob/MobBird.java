@@ -40,11 +40,13 @@ public class MobBird extends EntityAnimal
     public static final ResourceLocation RESOURCE = new ResourceLocation(Wildlife.ID, NAME);
     public static final int EGG_PRIMARY = 0x92923B;
     public static final int EGG_SECONDARY = 0xFFFFE2;
+    public static final int SPAWN_RATE = 10;
+    public static final int SPAWN_MIN = 1;
+    public static final int SPAWN_MAX = 4;
     
     public static final SoundEvent AMBIENT_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "bird.ambient")).setRegistryName(new ResourceLocation(Wildlife.ID, "bird.ambient"));
     public static final SoundEvent DEATH_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "bird.death")).setRegistryName(new ResourceLocation(Wildlife.ID, "bird.death"));
     public static final SoundEvent HURT_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "bird.hurt")).setRegistryName(new ResourceLocation(Wildlife.ID, "bird.hurt"));
-    
     
     public float flapLength = 0.0F;
     public float flapIntensity = 0.0F;

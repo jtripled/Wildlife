@@ -27,6 +27,9 @@ public class MobDeer extends EntityAnimal
     public static final ResourceLocation RESOURCE = new ResourceLocation(Wildlife.ID, NAME);
     public static final int EGG_PRIMARY = 0x92923B;
     public static final int EGG_SECONDARY = 0xFFFFE2;
+    public static final int SPAWN_RATE = 12;
+    public static final int SPAWN_MIN = 4;
+    public static final int SPAWN_MAX = 4;
     
     public MobDeer(World world)
     {

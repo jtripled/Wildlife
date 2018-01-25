@@ -1,10 +1,12 @@
-package com.jtripled.wildlife.mob.entry;
+package com.jtripled.wildlife.mob.registration;
 
-import com.jtripled.wildlife.mob.MobBird;
-import com.jtripled.wildlife.mob.render.RenderBird;
+import com.jtripled.voxen.entity.IMobRegistration;
+import com.jtripled.wildlife.mob.MobPenguin;
+import com.jtripled.wildlife.mob.render.RenderPenguin;
 import java.util.Set;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
@@ -13,65 +15,77 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
  *
  * @author jtripled
  */
-public class MobEntryBird extends MobEntry
+public class MobRegistrationPenguin implements IMobRegistration
 {
-    public MobEntryBird()
+    @Override
+    public String getName()
     {
-        super(MobBird.class, MobBird.NAME);
+        return MobPenguin.NAME;
     }
 
     @Override
     public Class<? extends EntityLiving> getEntityClass()
     {
-        return MobBird.class;
+        return MobPenguin.class;
     }
 
     @Override
     public IRenderFactory getRenderFactory()
     {
-        return RenderBird::new;
+        return RenderPenguin::new;
     }
 
     @Override
     public ResourceLocation getResourceLocation()
     {
-        return MobBird.RESOURCE;
+        return MobPenguin.RESOURCE;
     }
     
     @Override
     public int getEggPrimary()
     {
-        return MobBird.EGG_PRIMARY;
+        return MobPenguin.EGG_PRIMARY;
     }
     
     @Override
     public int getEggSecondary()
     {
-        return MobBird.EGG_SECONDARY;
+        return MobPenguin.EGG_SECONDARY;
     }
     
     @Override
     public boolean canSpawn(Biome biome)
     {
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
-        return types.contains(BiomeDictionary.Type.FOREST);
+        return (types.contains(BiomeDictionary.Type.SNOWY)
+                && !types.contains(BiomeDictionary.Type.FOREST));
     }
         
     @Override
     public int getSpawnRate()
     {
-        return 10;
+        return MobPenguin.SPAWN_RATE;
     }
 
     @Override
     public int getSpawnMin()
     {
-        return 2;
+        return MobPenguin.SPAWN_MIN;
     }
 
     @Override
     public int getSpawnMax()
     {
-        return 4;
+        return MobPenguin.SPAWN_MAX;
+    }
+    
+    @Override
+    public SoundEvent[] getSounds()
+    {
+        return new SoundEvent[]{
+            MobPenguin.AMBIENT_SOUND,
+            MobPenguin.DEATH_SOUND,
+            MobPenguin.HURT_SOUND
+        };
     }
 }
