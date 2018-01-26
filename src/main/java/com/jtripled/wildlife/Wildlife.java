@@ -20,11 +20,35 @@ public class Wildlife extends ModBase
     @Mod.Instance(Wildlife.ID)
     public static Wildlife INSTANCE;
     
-    public static final Registry REGISTRY = new WildlifeRegistry();
+    public static Registry REGISTRY;
     
     public static final String ID = "wildlife";
     public static final String NAME = "Wildlife";
     public static final String VERSION = "1.0";
+
+    @Override
+    public String getID()
+    {
+        return ID;
+    }
+
+    @Override
+    public String getName()
+    {
+        return NAME;
+    }
+
+    @Override
+    public String getVersion()
+    {
+        return VERSION;
+    }
+    
+    @Override
+    public Registry createRegistry()
+    {
+        return new WildlifeRegistry();
+    }
     
     @Mod.EventHandler
     public void onPreInit(FMLPreInitializationEvent event)
@@ -42,11 +66,5 @@ public class Wildlife extends ModBase
     public void onPostInit(FMLPostInitializationEvent event)
     {
         postInit(event);
-    }
-    
-    @Override
-    public Registry getRegistry()
-    {
-        return REGISTRY;
     }
 }
