@@ -5,6 +5,14 @@ entity.firefly.name=Firefly
 entity.penguin.name=Penguin
 entity.squirrel.name=Squirrel
 
+wildlife:subtitles.deer.ambient=Deer calls
+wildlife:subtitles.deer.death=Deer dies
+wildlife:subtitles.deer.hurt=Deer hurts
+
+wildlife:subtitles.bird.ambient=Bird sings
+wildlife:subtitles.bird.death=Bird dies
+wildlife:subtitles.bird.hurt=Bird hurts
+
 wildlife:subtitles.penguin.ambient=Penguin squawks
 wildlife:subtitles.penguin.death=Penguin dies
 wildlife:subtitles.penguin.hurt=Penguin hurts

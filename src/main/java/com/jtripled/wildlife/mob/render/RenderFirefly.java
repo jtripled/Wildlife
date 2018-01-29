@@ -18,8 +18,7 @@ public class RenderFirefly extends RenderLiving<MobFirefly>
 
     public RenderFirefly(RenderManager manager)
     {
-        super(manager, new ModelFirefly(), 0.25f);
-        this.shadowSize = 0.0f;
+        super(manager, new ModelFirefly(), 0.0f);
     }
 
     @Override

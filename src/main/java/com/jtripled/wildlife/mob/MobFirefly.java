@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.function.Predicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -17,6 +19,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -28,11 +32,18 @@ public final class MobFirefly extends EntityFlying implements IMob
 {
     public static final String NAME = "firefly";
     public static final ResourceLocation RESOURCE = new ResourceLocation(Wildlife.ID, NAME);
-    public static final int EGG_PRIMARY = 0x92923B;
-    public static final int EGG_SECONDARY = 0xFFFFE2;
+    public static final int EGG_PRIMARY = 0xFFFF00;
+    public static final int EGG_SECONDARY = 0xFFFF00;
     public static final int SPAWN_RATE = 10;
     public static final int SPAWN_MIN = 1;
     public static final int SPAWN_MAX = 3;
+    public static final Predicate<Biome> SPAWN_PREDICATE = (Biome biome) -> {
+        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
+        return types.contains(BiomeDictionary.Type.FOREST)
+                || types.contains(BiomeDictionary.Type.PLAINS)
+                || biome.getBiomeName().equals("Birch Forest")
+                || biome.getBiomeName().equals("Birch Forest Hills");
+    };
 
     public MobFirefly(World world)
     {

@@ -55,13 +55,7 @@ public class MobRegistrationButterfly implements IMobRegistration
     @Override
     public boolean canSpawn(Biome biome)
     {
-        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
-        return (((types.contains(BiomeDictionary.Type.FOREST)
-                || types.contains(BiomeDictionary.Type.PLAINS)))
-                && !types.contains(BiomeDictionary.Type.COLD)
-                && !types.contains(BiomeDictionary.Type.SNOWY))
-                || biome.getBiomeName().equals("Birch Forest")
-                || biome.getBiomeName().equals("Birch Forest Hills");
+        return MobButterfly.SPAWN_PREDICATE.test(biome);
     }
         
     @Override

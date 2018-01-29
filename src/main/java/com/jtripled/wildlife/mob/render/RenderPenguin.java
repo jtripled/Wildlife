@@ -17,7 +17,7 @@ public class RenderPenguin extends RenderLiving<MobPenguin>
     
     public RenderPenguin(RenderManager manager)
     {
-        super(manager, new ModelPenguin(), 0.5f);
+        super(manager, new ModelPenguin(), 0.35f);
     }
     
     @Override

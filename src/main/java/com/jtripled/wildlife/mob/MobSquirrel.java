@@ -1,6 +1,8 @@
 package com.jtripled.wildlife.mob;
 
 import com.jtripled.wildlife.Wildlife;
+import java.util.Set;
+import java.util.function.Predicate;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
@@ -17,6 +19,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 
 /**
  *
@@ -31,6 +35,13 @@ public class MobSquirrel extends EntityAnimal
     public static final int SPAWN_RATE = 10;
     public static final int SPAWN_MIN = 2;
     public static final int SPAWN_MAX = 3;
+    public static final Predicate<Biome> SPAWN_PREDICATE = (Biome biome) -> {
+        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
+        return (types.contains(BiomeDictionary.Type.FOREST)
+                || types.contains(BiomeDictionary.Type.CONIFEROUS))
+                || biome.getBiomeName().equals("Birch Forest")
+                || biome.getBiomeName().equals("Birch Forest Hills");
+    };
     
     public static final SoundEvent AMBIENT_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "squirrel.ambient")).setRegistryName(new ResourceLocation(Wildlife.ID, "squirrel.ambient"));
     public static final SoundEvent DEATH_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "squirrel.death")).setRegistryName(new ResourceLocation(Wildlife.ID, "squirrel.death"));

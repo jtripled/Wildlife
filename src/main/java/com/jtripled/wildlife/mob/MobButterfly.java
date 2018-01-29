@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.function.Predicate;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -12,6 +14,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.ai.EntityMoveHelper.Action;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -26,6 +29,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 
 /**
  *
@@ -35,11 +40,20 @@ public class MobButterfly extends EntityFlying implements IMob
 {
     public static final String NAME = "butterfly";
     public static final ResourceLocation RESOURCE = new ResourceLocation(Wildlife.ID, NAME);
-    public static final int EGG_PRIMARY = 0x92923B;
-    public static final int EGG_SECONDARY = 0xFFFFE2;
+    public static final int EGG_PRIMARY = 0x800080;
+    public static final int EGG_SECONDARY = 0x0000FF;
     public static final int SPAWN_RATE = 10;
     public static final int SPAWN_MIN = 1;
     public static final int SPAWN_MAX = 5;
+    public static final Predicate<Biome> SPAWN_PREDICATE = (Biome biome) -> {
+        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
+        return (((types.contains(BiomeDictionary.Type.FOREST)
+                || types.contains(BiomeDictionary.Type.PLAINS)))
+                && !types.contains(BiomeDictionary.Type.COLD)
+                && !types.contains(BiomeDictionary.Type.SNOWY))
+                || biome.getBiomeName().equals("Birch Forest")
+                || biome.getBiomeName().equals("Birch Forest Hills");
+    };
     
     private static final DataParameter<Byte> TYPE = EntityDataManager.<Byte>createKey(MobButterfly.class, DataSerializers.BYTE);
 
@@ -56,6 +70,12 @@ public class MobButterfly extends EntityFlying implements IMob
     {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(0.5D);
+    }
+    
+    @Override
+    public int getExperiencePoints(EntityPlayer player)
+    {
+        return 0;
     }
     
     @Override

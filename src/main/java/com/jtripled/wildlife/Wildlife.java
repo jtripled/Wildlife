@@ -15,8 +15,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod.EventBusSubscriber
 public class Wildlife extends ModBase
 {
-    public static final boolean DEBUG = true;
-    
     @Mod.Instance(Wildlife.ID)
     public static Wildlife INSTANCE;
     

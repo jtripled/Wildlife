@@ -13,17 +13,28 @@ import net.minecraft.util.ResourceLocation;
  */
 public class RenderButterfly extends RenderLiving<MobButterfly>
 {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(Wildlife.ID, "textures/entity/butterfly_blue.png");
+    private static final ResourceLocation TEXTURE_BLUE = new ResourceLocation(Wildlife.ID, "textures/entity/butterfly_blue.png");
+    private static final ResourceLocation TEXTURE_ORANGE = new ResourceLocation(Wildlife.ID, "textures/entity/butterfly_orange.png");
+    private static final ResourceLocation TEXTURE_PURPLE = new ResourceLocation(Wildlife.ID, "textures/entity/butterfly_purple.png");
+    private static final ResourceLocation TEXTURE_WHITE = new ResourceLocation(Wildlife.ID, "textures/entity/butterfly_white.png");
+    private static final ResourceLocation TEXTURE_YELLOW = new ResourceLocation(Wildlife.ID, "textures/entity/butterfly_yellow.png");
 
     public RenderButterfly(RenderManager manager)
     {
-        super(manager, new ModelButterfly(), 0.25f);
-        this.shadowSize = 0.0f;
+        super(manager, new ModelButterfly(), 0.0f);
     }
 
     @Override
     protected ResourceLocation getEntityTexture(MobButterfly entity)
     {
-        return TEXTURE;
+        switch (entity.getButterflyType())
+        {
+            case 0: return TEXTURE_BLUE;
+            case 1: return TEXTURE_ORANGE;
+            case 2: return TEXTURE_PURPLE;
+            case 3: return TEXTURE_WHITE;
+            case 4: return TEXTURE_YELLOW;
+            default: return TEXTURE_YELLOW;
+        }
     }
 }

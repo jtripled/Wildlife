@@ -21,7 +21,7 @@ public class RenderBird extends RenderLiving<MobBird>
     
     public RenderBird(RenderManager manager)
     {
-        super(manager, new ModelBird(), 0.5f);
+        super(manager, new ModelBird(), 0.4f);
     }
     
     

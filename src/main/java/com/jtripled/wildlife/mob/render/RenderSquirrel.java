@@ -17,7 +17,7 @@ public class RenderSquirrel extends RenderLiving<MobSquirrel>
     
     public RenderSquirrel(RenderManager manager)
     {
-        super(manager, new ModelSquirrel(), 0.5f);
+        super(manager, new ModelSquirrel(), 0.6f);
     }
     
     @Override

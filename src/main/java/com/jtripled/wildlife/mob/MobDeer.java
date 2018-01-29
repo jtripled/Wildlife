@@ -1,6 +1,9 @@
 package com.jtripled.wildlife.mob;
 
 import com.jtripled.wildlife.Wildlife;
+import java.util.Set;
+import java.util.function.Predicate;
+import javax.annotation.Nullable;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowParent;
@@ -16,6 +19,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 
 /**
  *
@@ -30,6 +35,15 @@ public class MobDeer extends EntityAnimal
     public static final int SPAWN_RATE = 12;
     public static final int SPAWN_MIN = 4;
     public static final int SPAWN_MAX = 4;
+    public static final Predicate<Biome> SPAWN_PREDICATE = (Biome biome) -> {
+        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
+        return (types.contains(BiomeDictionary.Type.FOREST)
+                || types.contains(BiomeDictionary.Type.CONIFEROUS))
+                || biome.getBiomeName().equals("Birch Forest")
+                || biome.getBiomeName().equals("Birch Forest Hills");
+    };
+    
+    private static final ResourceLocation LOOT_TABLE = new ResourceLocation(Wildlife.ID, "entity/deer");
     
     public MobDeer(World world)
     {
@@ -68,5 +82,18 @@ public class MobDeer extends EntityAnimal
     public MobDeer createChild(EntityAgeable entity)
     {
         return new MobDeer(world);
+    }
+    
+    @Override
+    public int getExperiencePoints(EntityPlayer player)
+    {
+        return this.rand.nextInt(3) + 1;
+    }
+    
+    @Nullable
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return LOOT_TABLE;
     }
 }

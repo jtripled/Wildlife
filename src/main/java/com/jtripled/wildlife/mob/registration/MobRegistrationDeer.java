@@ -3,11 +3,9 @@ package com.jtripled.wildlife.mob.registration;
 import com.jtripled.voxen.entity.IMobRegistration;
 import com.jtripled.wildlife.mob.MobDeer;
 import com.jtripled.wildlife.mob.render.RenderDeer;
-import java.util.Set;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 /**
@@ -55,11 +53,7 @@ public class MobRegistrationDeer implements IMobRegistration
     @Override
     public boolean canSpawn(Biome biome)
     {
-        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
-        return (types.contains(BiomeDictionary.Type.FOREST)
-                || types.contains(BiomeDictionary.Type.CONIFEROUS))
-                || biome.getBiomeName().equals("Birch Forest")
-                || biome.getBiomeName().equals("Birch Forest Hills");
+        return MobDeer.SPAWN_PREDICATE.test(biome);
     }
     
     @Override

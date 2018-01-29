@@ -1,6 +1,8 @@
 package com.jtripled.wildlife.mob;
 
 import com.jtripled.wildlife.Wildlife;
+import java.util.Set;
+import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -29,6 +31,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 
 /**
  *
@@ -38,11 +42,15 @@ public class MobBird extends EntityAnimal
 {
     public static final String NAME = "bird";
     public static final ResourceLocation RESOURCE = new ResourceLocation(Wildlife.ID, NAME);
-    public static final int EGG_PRIMARY = 0x92923B;
-    public static final int EGG_SECONDARY = 0xFFFFE2;
+    public static final int EGG_PRIMARY = 0x0000FF;
+    public static final int EGG_SECONDARY = 0xFFFF00;
     public static final int SPAWN_RATE = 10;
     public static final int SPAWN_MIN = 1;
     public static final int SPAWN_MAX = 4;
+    public static final Predicate<Biome> SPAWN_PREDICATE = (Biome biome) -> {
+        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
+        return types.contains(BiomeDictionary.Type.FOREST);
+    };
     
     public static final SoundEvent AMBIENT_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "bird.ambient")).setRegistryName(new ResourceLocation(Wildlife.ID, "bird.ambient"));
     public static final SoundEvent DEATH_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "bird.death")).setRegistryName(new ResourceLocation(Wildlife.ID, "bird.death"));

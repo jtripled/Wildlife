@@ -3,7 +3,9 @@ package com.jtripled.wildlife.mob;
 import com.google.common.collect.Sets;
 import com.jtripled.wildlife.Wildlife;
 import java.util.Set;
+import java.util.function.Predicate;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
@@ -26,6 +28,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 
 /**
  *
@@ -40,10 +44,17 @@ public class MobPenguin extends EntityAnimal
     public static final int SPAWN_RATE = 12;
     public static final int SPAWN_MIN = 2;
     public static final int SPAWN_MAX = 5;
+    public static final Predicate<Biome> SPAWN_PREDICATE = (Biome biome) -> {
+        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
+        return (types.contains(BiomeDictionary.Type.SNOWY)
+                && !types.contains(BiomeDictionary.Type.FOREST));
+    };
     
     public static final SoundEvent AMBIENT_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "penguin.ambient")).setRegistryName(new ResourceLocation(Wildlife.ID, "penguin.ambient"));
     public static final SoundEvent DEATH_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "penguin.death")).setRegistryName(new ResourceLocation(Wildlife.ID, "penguin.death"));
     public static final SoundEvent HURT_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "penguin.hurt")).setRegistryName(new ResourceLocation(Wildlife.ID, "penguin.hurt"));
+    
+    private static final ResourceLocation LOOT_TABLE = new ResourceLocation(Wildlife.ID, "entity/penguin");
     
     private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(new ItemStack(Items.FISH, 1, ItemFishFood.FishType.COD.getMetadata()).getItem(), new ItemStack(Items.FISH, 1, ItemFishFood.FishType.SALMON.getMetadata()).getItem());
     public short rotationFlipper;
@@ -123,7 +134,14 @@ public class MobPenguin extends EntityAnimal
     @Override
     protected int getExperiencePoints(EntityPlayer player)
     {
-        return 1;
+        return this.rand.nextInt(3) + 1;
+    }
+    
+    @Nullable
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return LOOT_TABLE;
     }
 
     @Override

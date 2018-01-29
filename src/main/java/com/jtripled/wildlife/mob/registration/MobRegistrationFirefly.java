@@ -55,8 +55,7 @@ public class MobRegistrationFirefly implements IMobRegistration
     @Override
     public boolean canSpawn(Biome biome)
     {
-        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
-        return types.contains(BiomeDictionary.Type.FOREST);
+        return MobFirefly.SPAWN_PREDICATE.test(biome);
     }
         
     @Override
