@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
  *
  * @author jtripled
  */
-@Mod(modid = Wildlife.ID, name = Wildlife.NAME, version = Wildlife.VERSION)
+@Mod(modid = Wildlife.ID, name = Wildlife.NAME, version = Wildlife.VERSION, dependencies = Wildlife.DEPENDS)
 @Mod.EventBusSubscriber
 public class Wildlife extends ModBase
 {
@@ -20,11 +20,12 @@ public class Wildlife extends ModBase
     @Mod.Instance(Wildlife.ID)
     public static Wildlife INSTANCE;
     
-    public static Registry REGISTRY;
-    
     public static final String ID = "wildlife";
     public static final String NAME = "Wildlife";
     public static final String VERSION = "1.0";
+    public static final String DEPENDS = "required-after:voxen";
+    
+    public static Registry REGISTRY;
 
     @Override
     public String getID()
@@ -45,14 +46,15 @@ public class Wildlife extends ModBase
     }
     
     @Override
-    public Registry createRegistry()
+    public Registry getRegistry()
     {
-        return new WildlifeRegistry();
+        return REGISTRY;
     }
     
     @Mod.EventHandler
     public void onPreInit(FMLPreInitializationEvent event)
     {
+        REGISTRY = new WildlifeRegistry();
         preInit(event);
     }
     
