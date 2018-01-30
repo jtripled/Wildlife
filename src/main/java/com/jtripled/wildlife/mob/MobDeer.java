@@ -39,8 +39,8 @@ public class MobDeer extends EntityAnimal
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
         return (types.contains(BiomeDictionary.Type.FOREST)
                 || types.contains(BiomeDictionary.Type.CONIFEROUS))
-                || biome.getBiomeName().equals("Birch Forest")
-                || biome.getBiomeName().equals("Birch Forest Hills");
+                || biome.biomeName.equals("Birch Forest")
+                || biome.biomeName.equals("Birch Forest Hills");
     };
     
     private static final ResourceLocation LOOT_TABLE = new ResourceLocation(Wildlife.ID, "entity/deer");

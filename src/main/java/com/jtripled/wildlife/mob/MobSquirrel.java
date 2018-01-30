@@ -39,8 +39,8 @@ public class MobSquirrel extends EntityAnimal
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
         return (types.contains(BiomeDictionary.Type.FOREST)
                 || types.contains(BiomeDictionary.Type.CONIFEROUS))
-                || biome.getBiomeName().equals("Birch Forest")
-                || biome.getBiomeName().equals("Birch Forest Hills");
+                || biome.biomeName.equals("Birch Forest")
+                || biome.biomeName.equals("Birch Forest Hills");
     };
     
     public static final SoundEvent AMBIENT_SOUND = new SoundEvent(new ResourceLocation(Wildlife.ID, "squirrel.ambient")).setRegistryName(new ResourceLocation(Wildlife.ID, "squirrel.ambient"));

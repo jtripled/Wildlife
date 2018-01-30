@@ -41,8 +41,8 @@ public final class MobFirefly extends EntityFlying implements IMob
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
         return types.contains(BiomeDictionary.Type.FOREST)
                 || types.contains(BiomeDictionary.Type.PLAINS)
-                || biome.getBiomeName().equals("Birch Forest")
-                || biome.getBiomeName().equals("Birch Forest Hills");
+                || biome.biomeName.equals("Birch Forest")
+                || biome.biomeName.equals("Birch Forest Hills");
     };
 
     public MobFirefly(World world)

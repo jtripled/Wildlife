@@ -51,8 +51,8 @@ public class MobButterfly extends EntityFlying implements IMob
                 || types.contains(BiomeDictionary.Type.PLAINS)))
                 && !types.contains(BiomeDictionary.Type.COLD)
                 && !types.contains(BiomeDictionary.Type.SNOWY))
-                || biome.getBiomeName().equals("Birch Forest")
-                || biome.getBiomeName().equals("Birch Forest Hills");
+                || biome.biomeName.equals("Birch Forest")
+                || biome.biomeName.equals("Birch Forest Hills");
     };
     
     private static final DataParameter<Byte> TYPE = EntityDataManager.<Byte>createKey(MobButterfly.class, DataSerializers.BYTE);
